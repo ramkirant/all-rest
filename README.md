@@ -4,16 +4,34 @@ All my projects in Rest, Spring Boot
 # Microservices
 ## Microservice resiliency
 ### Common issues in Microservice resilience
-- Service Failures
+- **Service Failures:**
   Microservices are spread across different containers or machines, making them susceptible to bugs, hardware issues or failures due to external dependencies.
-- Network Failures
+- **Network Failures:**
   Communication between microservices happen over networks leading to problems like increased latency, packet loss or temporary unavailability of services. 
-- Dependency Management / Cascading Failures
+- **Dependency Management / Cascading Failures:**
   Microservices depend on each other for various functionalities. If one of the microservice failues, it might bring down the entire system if not handled properly. 
-- Data Consistency
+- **Data Consistency:**
   It is very challenging to maintain data consistency in microservices as the data is distributed across multiple databases. Balancing consistency with partition tolerance, as per the CAP theorem is crucial
-- Scalability Challenges
+- **Scalability Challenges:**
   Although microservices allow for independent scaling, managing dynamic scaling to meet varying demands without causing bottlenects or resource waste is challenging.
+### Best Practices for ensuring resilience in microservices
+We can employ several patterns and techniques to ensure resilience in microservices. These patterns and techniques depends on the types of communication between microservices. There are two ways microservices can communicate with each other.
+- Synchronous communication
+- Asynchronous communication
+#### Resilience in Synchronous communications
+We can employ the below patterns / techniques to ensure resilience in synchronous communications
+- **Timeout:**
+  Timeout improves the latency while interacting with an unresponsive service. 
+- **Retry:**
+  Retry helps in overcoming temporary network related issues. We can implement retries for 5xx errors. We can control the number of retry by configuring the maximum number of retires after which we can fail our service. 
+- **Circuit Breaker:**
+  Circult Breaker helps us to define a secondary path for repeated service failures. This would also improve the latency as erraneous calls are short circuited and redirected to a secondary service. 
+- **Statelessness and Idempotence:**
+  Statelessness and Idempotence will helps us minimize the impact of failures on data.
+  A Stateless service will not store the internal state but will rely on external sources for data persistence. This will ensure effective service recovery after a failure.
+  An Idempotent service will handele repeated requests without changing the outcome, ensuring consistent behavior independent of request volume.
+- **Observability and Monitoring:**
+  We can use observability and monitoring tools to collect, analyze and visualize data and metrics about our services. These tools will help us understand performance, health and behavior of our system and thereby enables us to identify and fix issues quickly. 
 
 # Spring Boot
 ## Path variables are mandatory
