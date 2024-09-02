@@ -15,10 +15,6 @@ All my projects in Rest, Spring Boot
 - **Scalability Challenges:**
   Although microservices allow for independent scaling, managing dynamic scaling to meet varying demands without causing bottlenects or resource waste is challenging.
 ### Best Practices for ensuring resilience in microservices
-We can employ several patterns and techniques to ensure resilience in microservices. These patterns and techniques depends on the types of communication between microservices. There are two ways microservices can communicate with each other.
-- Synchronous communication
-- Asynchronous communication
-#### Resilience in Synchronous communications
 We can employ the below patterns / techniques to ensure resilience in synchronous communications
 - **Timeout:**
   Timeout improves the latency while interacting with an unresponsive service. 
@@ -32,7 +28,15 @@ We can employ the below patterns / techniques to ensure resilience in synchronou
   An Idempotent service will handele repeated requests without changing the outcome, ensuring consistent behavior independent of request volume.
 - **Observability and Monitoring:**
   We can use observability and monitoring tools to collect, analyze and visualize data and metrics about our services. These tools will help us understand performance, health and behavior of our system and thereby enables us to identify and fix issues quickly. 
-
+### Effective Failure Recovery Mechanisms
+- **Disaster Recovery Planning:**
+  Having a robust disaster recovery plan, including regular backups and clearly defined recovery procedures ensures that services can be restored to operation with minimal downtime.
+- **Backup Strategies:**
+  Regular systematic backups of data and configuration are essential for quick recovery from data loss or corruption. The effectiveness of backup strategy is often measured by its RPO (Recovery Point Objective) and RTO (Recovery Time Objective). These two parameters indicates the acceptable amount of data loss and how quickly systems should be restored after a failure. 
+- **Service Meshes:**
+  Service Meshes like istio or Linkerd provide an additional layer of infrastructure that manages service communication and offers resilient features like retries, load balancing, circuit breaking out of the box. 
+- **Logging and Monitoring:**
+  Comprehensive logging and real-time monitoring are crucial. for early detection of failures. Tools like Prometheus and Grafana offer insights into system health and performance, enabling quick identification and resolution of issues.
 # Spring Boot
 ## Path variables are mandatory
 In Spring Boot, all path variables are mandatory. It makes sense. Path variables define the resource on which we need to act. It is correct to return an error if we dont have path variable. In my openion, if there is an attribute which can be optional, it should be either  a part of body or should be a request parameter. 
