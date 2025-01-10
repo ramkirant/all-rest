@@ -57,6 +57,23 @@ This is a general purpose stereotype annotation indicating that the class is a s
 ### @Repository
 @Repository bean acts as a Data Repository. Apart from acting as a component, This repository catches specific exceptions and re-throw them as one of Spring's unified unchecked exception. 
 
+## Different Types of Injections
+There are three options on how dependencies can be injected into a bean
+1. Through a constructor
+2. Through setters or other methods
+3. Through reflection, directly into fields
+
+Below are the guidelines that are recommended by Spring
+1. For mandatory dependencies or when aiming for immutability, use constructor injection.
+2. For optional or changeable dependencies, use setter injection
+3. Avoid field injection in most cases.
+
+Drawbacks of field injection
+1. You cannot create immutable objects as you can with constructor injection
+2. Your classes will have a tight coupling with your DI container and cannot be used outside of it. 
+3. Your classes cannot be instantiated without reflection. We cannot instantiate the classes without our DI container.
+4. It is very easy to have like 10 dependencies. If we you are using constructor injection, you would have a constructor with 10 fields which would signal something fishy. But we can add injected fields indefinitely. Having too many dependencies is a red flag. It signals that our class is doing more than one thing. This violates the single responsibility principle.
+
 ## Difference between @SpringBootTest and @WebMvcTest
 | @SpringBootTest                                                                                                                                                                                                                                                    | @WebMvcTest                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
